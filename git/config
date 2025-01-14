@@ -1,0 +1,11 @@
+[init]
+	defaultBranch = master
+[pull]
+	ff = only
+[core]
+	quotepath = false  # Show Chinese characters
+	excludesfile = ~/.config/git/ignore
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+[pager]
+	branch = false
