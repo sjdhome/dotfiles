@@ -1,0 +1,53 @@
+# zsh
+bindkey -e
+PS1='[%n@%m %1~]%# '
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+autoload -Uz compinit
+compinit -u
+
+# Homebrew
+if [[ -d /opt/homebrew ]]
+then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# PATH
+if [[ -d /opt/homebrew ]]
+then
+	path=(
+		'/opt/homebrew/opt/curl/bin'
+		$path
+	)
+fi
+if [[ -d "$HOME/.go/bin" ]]
+then
+	path=("$HOME/.go/bin" $path)
+fi
+export PATH
+
+# alias
+alias python='python3'
+alias pip='pip3'
+alias rm='rm -I'
+alias diff='diff --color=auto --unified'
+alias fastcommit="git add -A; git commit -m 'Fast commit'"
+alias rclone='rclone --s3-no-check-bucket'
+
+# fzf
+if command -v fzf >/dev/null
+then
+	source <(fzf --zsh)
+	if [[ "Darwin" == "$(uname)" ]]
+	then
+		bindkey "ç" fzf-cd-widget
+	fi
+fi
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+init-nvm() {
+	[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+}

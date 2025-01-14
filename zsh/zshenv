@@ -1,0 +1,42 @@
+export EDITOR=vim
+
+# macOS
+if [[ "Darwin" == "$(uname)" ]]
+then
+	if [[ -z "$LANG" ]]
+	then
+		export LANG='zh_CN.UTF-8'
+	fi
+	# Homebrew
+	if [[ -d /opt/homebrew ]]
+	then
+		export HOMEBREW_API_DOMAIN='https://mirrors.ustc.edu.cn/homebrew-bottles/api'
+		export HOMEBREW_BOTTLE_DOMAIN='https://mirrors.ustc.edu.cn/homebrew-bottles'
+		export HOMEBREW_CORE_GIT_REMOTE='https://mirrors.ustc.edu.cn/homebrew-core.git'
+	fi
+	export CLICOLOR=1
+	export SHELL_SESSIONS_DISABLE=1
+fi
+
+# Linux
+if [[ "Linux" == "$(uname)" ]]
+then
+	if [[ $TERM != 'linux' ]]
+	then
+		export LANG='zh_CN.UTF-8'
+	fi
+fi
+
+# Go
+export GOPROXY='https://goproxy.cn,direct'
+export GOPATH="$HOME/.go"
+
+# Rust
+export RUSTUP_DIST_SERVER='https://rsproxy.cn'
+export RUSTUP_UPDATE_ROOT='https://rsproxy.cn/rustup'
+
+# less
+export LESS='--mouse -r'
+
+# JavaScript
+export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
